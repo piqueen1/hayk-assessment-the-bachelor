@@ -41,17 +41,32 @@ def count_contestants_by_hometown(data, hometown)
   data.keys.each do | season |
     data[season].each do | contestant |
       #binding.pry
-      if contestant["hometown"] == hometown do
+      if contestant["hometown"] == hometown
         residents += 1
+      end
+    end
+  end
+
+  residents
+end
+
+def get_occupation(data, hometown)
+  data.keys.each do | season |
+    data[season].each do | contestant |
+      #binding.pry
+      if contestant["hometown"] == hometown
+        return contestant["occupation"]
       end
     end
   end
 end
 
-def get_occupation(data, hometown)
-  # code here
-end
-
 def get_average_age_for_season(data, season)
-  # code here
+  ages = []
+  
+  data[season].each do | contestant |
+    ages << contestant["age"].to_f
+  end
+  
+  (ages.sum / ages.length).round
 end
